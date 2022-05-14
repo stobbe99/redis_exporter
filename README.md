@@ -38,7 +38,8 @@ scrape_configs:
     - targets: ['<<REDIS-EXPORTER-HOSTNAME>>:9121']
 ```
 
-and adjust the host name accordingly.
+and adjust the host name accordingly. 
+Prometheus will scrape the redis_exporter on port "hostname:9121/metric" 
 
 
 ### Kubernetes SD configurations
@@ -130,7 +131,7 @@ The `targets-redis-instances.json` should look something like this:
 ```
 
 Prometheus uses file watches and all changes to the json file are applied immediately.
-
+Prometheus wil now send redis_exporter a specific target name to scrape. So not on the /metrics but on the scrape endpoint. The url will look smomething like: host:9121/scrape?target=host:6379
 
 ### Command line flags
 
